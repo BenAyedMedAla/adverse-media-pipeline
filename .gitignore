@@ -1,0 +1,20 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+
+# Virtual environments
+.venv/
+venv/
+
+# Secrets
+.env
+
+# Model caches
+.cache/
+hf_cache/
+models/
+
+# Assessment brief
+*.docx
