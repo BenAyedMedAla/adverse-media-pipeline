@@ -1,0 +1,362 @@
+[
+  {
+    "id": "a001",
+    "title": "Prosecutors raid Acme GmbH headquarters in bribery probe",
+    "snippet": "Investigators searched the Düsseldorf offices of Acme GmbH on Tuesday over suspected bribes paid to municipal officials in exchange for public contracts. Prosecutors said three managers are under investigation for corruption and that documents and laptops were seized.",
+    "source_url": "https://rhine-ledger.example/business/2025/03/acme-gmbh-bribery-raid",
+    "published_at": "2025-03-12",
+    "language": "en",
+    "feed": "newswire"
+  },
+  {
+    "id": "a002",
+    "title": "Acme GmbH accused of inflating invoices to defraud public hospitals",
+    "snippet": "A state audit alleges that Acme GmbH systematically overbilled regional hospitals for maintenance work that was never carried out. Auditors estimate the fraud cost taxpayers more than €4 million between 2021 and 2024, and the health ministry has referred the case to prosecutors.",
+    "source_url": "https://continental-wire.example/companies/acme-hospital-invoices",
+    "published_at": "2025-05-20",
+    "language": "en",
+    "feed": "newswire"
+  },
+  {
+    "id": "a003",
+    "title": "Acme GmbH executives charged with laundering proceeds through shell companies",
+    "snippet": "Two senior executives at Acme GmbH were charged with money laundering after prosecutors traced payments through a network of shell companies in three countries. The indictment says the funds came from overpriced export deals and were later moved into the executives' private accounts.",
+    "source_url": "https://harbor-times.example/news/acme-shell-companies-laundering",
+    "published_at": "2025-07-08",
+    "language": "en",
+    "feed": "web_archive"
+  },
+  {
+    "id": "a004",
+    "title": "Former Acme GmbH sales chief admits paying kickbacks to procurement officials",
+    "snippet": "The former head of sales at Acme GmbH told a court in Cologne that he paid kickbacks to procurement officials at two state utilities to win supply contracts. He said the payments were approved by senior management and disguised as consulting fees.",
+    "source_url": "https://daily-bulletin.example/europe/acme-sales-chief-kickbacks",
+    "published_at": "2025-09-15",
+    "language": "en",
+    "feed": "newswire"
+  },
+  {
+    "id": "a005",
+    "title": "Staatsanwaltschaft ermittelt gegen Acme GmbH wegen Schmiergeldzahlungen",
+    "snippet": "Die Staatsanwaltschaft Düsseldorf ermittelt gegen mehrere Manager der Acme GmbH. Sie sollen Beamten Schmiergeld gezahlt haben, um öffentliche Aufträge im Straßenbau zu erhalten. Bei einer Durchsuchung wurden umfangreiche Unterlagen sichergestellt.",
+    "source_url": "https://wirtschaftsblatt.example/unternehmen/acme-gmbh-schmiergeld",
+    "published_at": "2025-11-03",
+    "language": "de",
+    "feed": "newswire"
+  },
+  {
+    "id": "a006",
+    "title": "Acme GmbH visée par une enquête pour blanchiment d'argent",
+    "snippet": "Le parquet financier a ouvert une enquête visant la société allemande Acme GmbH pour blanchiment d'argent. Selon les enquêteurs, des fonds d'origine douteuse auraient transité par sa filiale française avant d'être transférés vers des comptes offshore.",
+    "source_url": "https://le-courrier-eco.example/entreprises/acme-gmbh-blanchiment",
+    "published_at": "2026-01-14",
+    "language": "fr",
+    "feed": "web_archive"
+  },
+  {
+    "id": "a007",
+    "title": "Acme GmbH fined €12 million for rigging municipal tenders",
+    "snippet": "The competition authority fined Acme GmbH €12 million after finding it colluded with rivals and bribed a city procurement officer to rig road maintenance tenders. Regulators said the company submitted fake competing bids to make the process appear fair.",
+    "source_url": "https://continental-wire.example/markets/acme-gmbh-tender-rigging-fine",
+    "published_at": "2026-02-10",
+    "language": "en",
+    "feed": "newswire"
+  },
+  {
+    "id": "a008",
+    "title": "Whistleblower says Acme GmbH falsified emissions test data",
+    "snippet": "A former engineer at Acme GmbH has told regulators that the company falsified emissions test results for its industrial boilers to secure government subsidies. Inspectors confirmed they have opened a fraud investigation and requested internal test records from the company.",
+    "source_url": "https://metro-gazette.example/industry/acme-whistleblower-test-data",
+    "published_at": "2026-03-05",
+    "language": "en",
+    "feed": "web_archive"
+  },
+  {
+    "id": "a009",
+    "title": "Finanzaufsicht findet Hinweise auf Bilanzbetrug bei Acme GmbH",
+    "snippet": "Die Finanzaufsicht hat bei einer Sonderprüfung der Acme GmbH Hinweise auf Bilanzbetrug gefunden. Umsätze sollen über Jahre künstlich erhöht worden sein, um Kreditgeber zu täuschen. Der Fall wurde an die Staatsanwaltschaft übergeben.",
+    "source_url": "https://wirtschaftsblatt.example/finanzen/acme-bilanzbetrug",
+    "published_at": "2026-04-22",
+    "language": "de",
+    "feed": "web_archive"
+  },
+  {
+    "id": "a010",
+    "title": "Acme GmbH subsidiary suspected of moving illicit funds via Cyprus accounts",
+    "snippet": "Financial intelligence investigators suspect that a trading subsidiary of Acme GmbH moved illicit funds through Cypriot bank accounts to hide their origin. Banks filed several suspicious activity reports, and authorities have frozen accounts linked to the subsidiary's managing director.",
+    "source_url": "https://harbor-times.example/business/acme-cyprus-accounts",
+    "published_at": "2026-05-18",
+    "language": "en",
+    "feed": "newswire"
+  },
+  {
+    "id": "a011",
+    "title": "Pots-de-vin : un dirigeant d'Acme GmbH mis en examen",
+    "snippet": "Un dirigeant de la filiale française d'Acme GmbH a été mis en examen pour corruption d'agents publics. Il est soupçonné d'avoir versé des pots-de-vin à des élus locaux afin d'obtenir des marchés de rénovation d'écoles.",
+    "source_url": "https://le-courrier-eco.example/justice/acme-gmbh-pots-de-vin",
+    "published_at": "2026-06-09",
+    "language": "fr",
+    "feed": "newswire"
+  },
+  {
+    "id": "a012",
+    "title": "Auditors uncover fake consulting contracts at Acme GmbH used to bribe officials",
+    "snippet": "External auditors found that Acme GmbH signed dozens of fake consulting contracts with firms controlled by public officials. The report concludes the contracts were used to channel bribes and to defraud shareholders by hiding the payments as legitimate expenses.",
+    "source_url": "https://daily-bulletin.example/europe/acme-fake-consulting-contracts",
+    "published_at": "2026-08-27",
+    "language": "en",
+    "feed": "newswire"
+  },
+  {
+    "id": "a013",
+    "title": "Acme GmbH loses €2 million to fake supplier invoice scam",
+    "snippet": "Criminals posing as a long-standing supplier tricked Acme GmbH into paying €2 million into a fraudulent bank account. Police said the company reported the fraud immediately and is cooperating with investigators to trace the stolen funds.",
+    "source_url": "https://metro-gazette.example/crime/acme-fake-supplier-scam",
+    "published_at": "2025-02-18",
+    "language": "en",
+    "feed": "newswire"
+  },
+  {
+    "id": "a014",
+    "title": "Acme GmbH wird Opfer von CEO-Betrug per E-Mail",
+    "snippet": "Betrüger haben sich per E-Mail als Geschäftsführer der Acme GmbH ausgegeben und eine Buchhalterin zu einer Überweisung von 800.000 Euro verleitet. Das Unternehmen hat Anzeige erstattet, die Polizei ermittelt gegen unbekannt.",
+    "source_url": "https://wirtschaftsblatt.example/regional/acme-ceo-betrug",
+    "published_at": "2025-06-02",
+    "language": "de",
+    "feed": "web_archive"
+  },
+  {
+    "id": "a015",
+    "title": "Court convicts former contractor who defrauded Acme GmbH",
+    "snippet": "A regional court sentenced a former IT contractor to three years in prison for defrauding Acme GmbH through forged service invoices. The judge noted that Acme GmbH had uncovered the scheme through its own internal controls and reported it to police.",
+    "source_url": "https://harbor-times.example/courts/contractor-defrauded-acme",
+    "published_at": "2025-10-21",
+    "language": "en",
+    "feed": "web_archive"
+  },
+  {
+    "id": "a016",
+    "title": "Acme GmbH rolls out anti-corruption training for all employees",
+    "snippet": "Acme GmbH has launched a mandatory anti-corruption and anti-bribery training programme for its 4,000 employees worldwide. The company said the course covers gift policies, conflicts of interest and how to report suspected fraud through its new whistleblower hotline.",
+    "source_url": "https://tech-dispatch.example/companies/acme-anti-corruption-training",
+    "published_at": "2025-04-09",
+    "language": "en",
+    "feed": "newswire"
+  },
+  {
+    "id": "a017",
+    "title": "Acme GmbH renforce son programme de conformité anticorruption",
+    "snippet": "Acme GmbH a annoncé le renforcement de son programme de conformité, avec des formations obligatoires contre la corruption et le blanchiment d'argent. L'entreprise souhaite obtenir une certification ISO 37001 d'ici la fin de l'année.",
+    "source_url": "https://le-courrier-eco.example/entreprises/acme-conformite",
+    "published_at": "2026-03-24",
+    "language": "fr",
+    "feed": "newswire"
+  },
+  {
+    "id": "a018",
+    "title": "Acme GmbH rejects anonymous bribery claims circulating online",
+    "snippet": "Acme GmbH has dismissed as false an anonymous social media post claiming it bribed officials to win a rail contract. The contracting authority said it had found no irregularities in the tender and that no investigation has been opened.",
+    "source_url": "https://daily-bulletin.example/europe/acme-rejects-bribery-rumor",
+    "published_at": "2025-08-13",
+    "language": "en",
+    "feed": "newswire"
+  },
+  {
+    "id": "a019",
+    "title": "Behörde: Keine Hinweise auf Geldwäsche bei Acme GmbH",
+    "snippet": "Nach einer mehrmonatigen Prüfung hat die Finanzaufsicht keine Hinweise auf Geldwäsche bei der Acme GmbH gefunden. Ein entsprechender Medienbericht aus dem Frühjahr sei unbegründet gewesen, teilte die Behörde mit. Das Verfahren wurde eingestellt.",
+    "source_url": "https://wirtschaftsblatt.example/finanzen/acme-keine-geldwaesche",
+    "published_at": "2026-07-01",
+    "language": "de",
+    "feed": "newswire"
+  },
+  {
+    "id": "a020",
+    "title": "Acme Corp executives indicted in Texas money laundering case",
+    "snippet": "Federal prosecutors in Houston indicted three executives of Acme Corp, a US oilfield services company, for laundering cartel money through equipment sales. The Texas-based company said it was cooperating with authorities and had placed the executives on leave.",
+    "source_url": "https://metro-gazette.example/us/acme-corp-texas-indictment",
+    "published_at": "2025-12-04",
+    "language": "en",
+    "feed": "newswire"
+  },
+  {
+    "id": "a021",
+    "title": "Acme Bank fined over anti-money laundering failures",
+    "snippet": "Regulators fined Acme Bank €30 million for failing to monitor suspicious transactions, allowing criminals to launder money through its accounts for years. The Lisbon-based lender said it has replaced its compliance chief and upgraded its monitoring systems.",
+    "source_url": "https://harbor-times.example/finance/acme-bank-aml-fine",
+    "published_at": "2026-02-26",
+    "language": "en",
+    "feed": "web_archive"
+  },
+  {
+    "id": "a022",
+    "title": "Corruption : la société Acme Construction SA condamnée à Lyon",
+    "snippet": "Le tribunal correctionnel de Lyon a condamné Acme Construction SA pour corruption dans l'attribution de marchés publics régionaux. L'entreprise de BTP lyonnaise devra payer une amende de deux millions d'euros et sera exclue des appels d'offres pendant trois ans.",
+    "source_url": "https://le-courrier-eco.example/justice/acme-construction-condamnee",
+    "published_at": "2026-05-06",
+    "language": "fr",
+    "feed": "web_archive"
+  },
+  {
+    "id": "a023",
+    "title": "Survey ranks 200 European firms on corruption risk disclosure",
+    "snippet": "A new transparency survey rates how openly 200 European companies report on corruption and bribery risks. Firms assessed include Acme GmbH, Globex Logistics, Initech and Umbrella Holdings, among many others. The authors stress the ranking measures disclosure quality, not wrongdoing.",
+    "source_url": "https://continental-wire.example/reports/corruption-risk-disclosure-survey",
+    "published_at": "2025-11-27",
+    "language": "en",
+    "feed": "web_archive"
+  },
+  {
+    "id": "a024",
+    "title": "Branchenstudie: Korruptionsrisiken im Maschinenbau",
+    "snippet": "Eine neue Branchenstudie untersucht Korruptionsrisiken bei 50 deutschen Maschinenbauern, darunter Acme GmbH, Stahlwerk Nord und Kessler AG. Die Autoren betonen, dass keine der befragten Firmen eines Fehlverhaltens beschuldigt wird. Die Studie soll jährlich erscheinen.",
+    "source_url": "https://wirtschaftsblatt.example/studien/korruptionsrisiken-maschinenbau",
+    "published_at": "2026-09-10",
+    "language": "de",
+    "feed": "newswire"
+  },
+  {
+    "id": "a025",
+    "title": "Acme GmbH unveils new line of industrial sensors",
+    "snippet": "Acme GmbH introduced a range of wireless vibration sensors designed for predictive maintenance in factories. The company said the devices run for five years on a single battery and will ship to customers in the spring.",
+    "source_url": "https://tech-dispatch.example/products/acme-industrial-sensors",
+    "published_at": "2025-01-22",
+    "language": "en",
+    "feed": "newswire"
+  },
+  {
+    "id": "a026",
+    "title": "Acme GmbH reports 8% revenue growth in third quarter",
+    "snippet": "Acme GmbH reported third-quarter revenue of €410 million, up 8% year on year, driven by strong demand for automation equipment. The company confirmed its full-year guidance and plans to hire 300 engineers.",
+    "source_url": "https://continental-wire.example/markets/acme-q3-revenue",
+    "published_at": "2025-10-30",
+    "language": "en",
+    "feed": "newswire"
+  },
+  {
+    "id": "a027",
+    "title": "Globex Logistics CFO charged with accounting fraud",
+    "snippet": "The chief financial officer of Globex Logistics was charged with securities fraud after allegedly hiding €90 million in losses from investors. Prosecutors say the scheme ran for four years before an internal audit uncovered it.",
+    "source_url": "https://harbor-times.example/business/globex-cfo-accounting-fraud",
+    "published_at": "2025-06-25",
+    "language": "en",
+    "feed": "web_archive"
+  },
+  {
+    "id": "a028",
+    "title": "Port strike delays container shipments across northern Europe",
+    "snippet": "Dock workers at three major ports walked out for 48 hours over pay, leaving hundreds of containers stranded. Logistics firms warned that delivery times for industrial goods could rise by up to two weeks.",
+    "source_url": "https://daily-bulletin.example/europe/port-strike-shipping-delays",
+    "published_at": "2025-08-29",
+    "language": "en",
+    "feed": "newswire"
+  },
+  {
+    "id": "a029",
+    "title": "Acme GmbH opens new plant in Saxony",
+    "snippet": "Acme GmbH opened a €150 million production plant near Leipzig that will create 600 jobs. The state premier attended the opening ceremony and praised the company's investment in the region's manufacturing base.",
+    "source_url": "https://metro-gazette.example/regional/acme-saxony-plant",
+    "published_at": "2026-01-28",
+    "language": "en",
+    "feed": "newswire"
+  },
+  {
+    "id": "a030",
+    "title": "Initech settles bribery charges with regulators",
+    "snippet": "Software company Initech agreed to pay $45 million to settle charges that its sales agents bribed officials in Southeast Asia to win government IT contracts. The company neither admitted nor denied wrongdoing under the settlement.",
+    "source_url": "https://metro-gazette.example/business/initech-bribery-settlement",
+    "published_at": "2026-04-08",
+    "language": "en",
+    "feed": "web_archive"
+  },
+  {
+    "id": "a031",
+    "title": "Acme GmbH appoints new chief technology officer",
+    "snippet": "Acme GmbH named robotics specialist Lena Hoffmann as chief technology officer, effective September. She joins from a research institute and will lead the company's push into autonomous warehouse systems and industrial robotics.",
+    "source_url": "https://tech-dispatch.example/people/acme-new-cto",
+    "published_at": "2026-06-30",
+    "language": "en",
+    "feed": "newswire"
+  },
+  {
+    "id": "a032",
+    "title": "Météo : vague de chaleur attendue dans le sud de la France",
+    "snippet": "Les prévisionnistes annoncent des températures supérieures à 38 degrés dans le sud du pays à partir de jeudi. Les autorités recommandent d'éviter les efforts physiques aux heures les plus chaudes et de s'hydrater régulièrement.",
+    "source_url": "https://le-courrier-eco.example/meteo/vague-de-chaleur",
+    "published_at": "2026-07-15",
+    "language": "fr",
+    "feed": "newswire"
+  },
+  {
+    "id": "a033",
+    "title": "Acme GmbH sponsors regional youth football league",
+    "snippet": "Acme GmbH signed a three-year deal to sponsor a regional youth football league with more than 120 teams. The company will also fund new kits and training equipment for clubs in low-income neighbourhoods.",
+    "source_url": "https://metro-gazette.example/sport/acme-youth-football",
+    "published_at": "2026-09-03",
+    "language": "en",
+    "feed": "web_archive"
+  },
+  {
+    "id": "a034",
+    "title": "European Central Bank holds interest rates steady",
+    "snippet": "The European Central Bank left its key interest rates unchanged on Thursday, citing easing inflation and slow growth across the euro area. Analysts expect the first rate cut to come early next year.",
+    "source_url": "https://continental-wire.example/economy/ecb-holds-rates",
+    "published_at": "2026-10-02",
+    "language": "en",
+    "feed": "newswire"
+  },
+  {
+    "id": "a035",
+    "title": "Prosecutors raid Acme GmbH headquarters in bribery probe",
+    "snippet": "Investigators searched the Düsseldorf offices of Acme GmbH on Tuesday over suspected bribes paid to municipal officials in exchange for public contracts. Prosecutors said three managers are under investigation for corruption and that documents and laptops were seized.",
+    "source_url": "https://rhine-ledger.example/business/2025/03/acme-gmbh-bribery-raid?utm_source=twitter&utm_medium=social",
+    "published_at": "2025-03-12",
+    "language": "en",
+    "feed": "web_archive"
+  },
+  {
+    "id": "a036",
+    "title": "Acme GmbH accused of inflating invoices to defraud public hospitals",
+    "snippet": "A state audit alleges that Acme GmbH systematically overbilled regional hospitals for maintenance work that was never carried out. Auditors estimate the fraud cost taxpayers more than €4 million between 2021 and 2024, and the health ministry has referred the case to prosecutors.",
+    "source_url": "http://www.continental-wire.example/companies/acme-hospital-invoices/",
+    "published_at": "2025-05-20",
+    "language": "en",
+    "feed": "web_archive"
+  },
+  {
+    "id": "a037",
+    "title": "Acme GmbH unveils new line of industrial sensors",
+    "snippet": "Acme GmbH introduced a range of wireless vibration sensors designed for predictive maintenance in factories. The company said the devices run for five years on a single battery and will ship to customers in the spring.",
+    "source_url": "https://tech-dispatch.example/products/acme-industrial-sensors?utm_campaign=newsletter#comments",
+    "published_at": "2025-01-22",
+    "language": "en",
+    "feed": "web_archive"
+  },
+  {
+    "id": "a038",
+    "title": "Former Acme GmbH sales chief admits paying kickbacks to procurement officials – Harbor Times",
+    "snippet": "The former head of sales at Acme GmbH told a court in Cologne that he paid kickbacks to procurement officials at two state utilities to win supply contracts. He said the payments were approved by senior management and disguised as consulting fees.",
+    "source_url": "https://harbor-times.example/wire/acme-sales-chief-kickbacks",
+    "published_at": "2025-09-16",
+    "language": "en",
+    "feed": "web_archive"
+  },
+  {
+    "id": "a039",
+    "title": "Acme GmbH fined €12 million for rigging municipal tenders!",
+    "snippet": "The competition authority fined Acme GmbH €12 million after finding it colluded with rivals and bribed a city procurement officer to rig road maintenance tenders. Regulators said the company submitted fake competing bids to make the process appear fair.",
+    "source_url": "https://metro-gazette.example/syndicated/acme-tender-rigging",
+    "published_at": "2026-02-11",
+    "language": "en",
+    "feed": "web_archive"
+  },
+  {
+    "id": "a040",
+    "title": "Auditors uncover fake consulting contracts at Acme GmbH used to bribe officials (Daily Bulletin)",
+    "snippet": "External auditors found that Acme GmbH signed dozens of fake consulting contracts with firms controlled by public officials. The report concludes the contracts were used to channel bribes and to defraud shareholders by hiding the payments as legitimate expenses.",
+    "source_url": "https://tech-dispatch.example/wire/acme-consulting-contracts",
+    "published_at": "2026-08-28",
+    "language": "en",
+    "feed": "web_archive"
+  }
+]

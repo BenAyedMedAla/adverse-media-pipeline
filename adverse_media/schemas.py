@@ -27,7 +27,7 @@ class Metrics(BaseModel):
     """Articles evaluated by the decision layer."""
     llm_invocations: int = Field(ge=0)
     """Calls made to the generative LLM."""
-    total_latency_ms: int
+    total_latency_ms: int = Field(ge=0)
     """Wall-clock time for the whole job in milliseconds."""
 
 
