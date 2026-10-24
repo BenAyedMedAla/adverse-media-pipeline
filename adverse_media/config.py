@@ -1,6 +1,7 @@
 """Application settings loaded from environment variables and .env."""
 
 from functools import lru_cache
+from typing import Literal
 
 from pydantic import Field
 from pydantic_settings import BaseSettings, SettingsConfigDict
@@ -22,6 +23,10 @@ class Settings(BaseSettings):
     llm_api_key: str = ""
     llm_model: str = "llama-3.1-8b-instant"
     llm_max_concurrency: int = 4
+    llm_timeout_seconds: float = 20.0
+    llm_json_mode: bool = True
+    llm_max_tokens: int = Field(default=1024, ge=1)
+    llm_reasoning_effort: Literal["low", "medium", "high"] | None = None
 
     source_timeout_seconds: float = 5
 

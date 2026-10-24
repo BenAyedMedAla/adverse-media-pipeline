@@ -19,6 +19,7 @@ from adverse_media.decision.hypotheses import (
 from adverse_media.decision.nli_classifier import HFNLIClassifier
 from adverse_media.ingestion.dedup import deduplicate
 from adverse_media.ingestion.sources import LocalDatasetSource, fetch_candidates
+from adverse_media.metrics import tag_micro_metrics
 
 ROOT = Path(__file__).parents[1]
 KEYWORDS = ["corruption", "fraud", "bribery", "money laundering"]
@@ -44,25 +45,6 @@ def binary_metrics(predicted: list[bool], actual: list[bool]) -> tuple[float, fl
     precision = tp / (tp + fp) if tp + fp else 0.0
     recall = tp / (tp + fn) if tp + fn else 0.0
     return precision, recall, f1(precision, recall)
-
-
-def micro_tag_f1(records: list[dict], tag_scores: dict[str, dict[str, float]], threshold: float) -> float:
-    tp = fp = fn = 0
-    for article in records:
-        if not article["label"]["is_hit"]:
-            continue
-        gold = set(article["label"]["categories"])
-        predicted = {
-            keyword
-            for keyword, score in tag_scores[article["article"].id].items()
-            if score >= threshold
-        }
-        tp += len(gold & predicted)
-        fp += len(predicted - gold)
-        fn += len(gold - predicted)
-    precision = tp / (tp + fp) if tp + fp else 0.0
-    recall = tp / (tp + fn) if tp + fn else 0.0
-    return f1(precision, recall)
 
 
 class CachedClassifier:
@@ -226,21 +208,14 @@ def print_tuning(rows: list[dict], tag_scores: dict[str, dict[str, float]]) -> t
         for row in rows
         if row["label"]["is_hit"]
     }
-    tp = fp = fn = 0
-    for row in rows:
-        if not row["label"]["is_hit"]:
-            continue
-        gold = set(row["label"]["categories"])
-        predicted = set(tag_predictions[row["article"].id])
-        tp += len(gold & predicted)
-        fp += len(predicted - gold)
-        fn += len(gold - predicted)
-    precision = tp / (tp + fp) if tp + fp else 0.0
-    recall = tp / (tp + fn) if tp + fn else 0.0
+    precision, recall, tag_f1 = tag_micro_metrics(
+        [set(tag_predictions[row["article"].id]) for row in rows if row["label"]["is_hit"]],
+        [set(row["label"]["categories"]) for row in rows if row["label"]["is_hit"]],
+    )
     print("\nDEV tag result: final rule tag_threshold=0.50, tag_max_labels=2")
     print(
         f"  micro_precision={precision:.4f} micro_recall={recall:.4f} "
-        f"micro_f1={f1(precision, recall):.4f} "
+        f"micro_f1={tag_f1:.4f} "
         f"n_articles={sum(row['label']['is_hit'] for row in rows)} "
         f"n_gold_labels={sum(len(row['label']['categories']) for row in rows if row['label']['is_hit'])}"
     )
