@@ -1,7 +1,7 @@
 # Adverse Media Pipeline
 
 Async FastAPI service that screens news articles for adverse media about a company.
-Lightweight decision models filter out noise first; a generative LLM is called only on confirmed hits to explain why they matter.
+Lightweight decision models filter out noise first; the final LLM routing policy will be decided after evaluating the decision layer.
 
 ## Install
 
