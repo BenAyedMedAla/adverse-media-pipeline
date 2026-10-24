@@ -1,3 +1,4 @@
+--extra-index-url https://download.pytorch.org/whl/cpu
 fastapi
 uvicorn[standard]
 pydantic>=2
@@ -6,3 +7,6 @@ httpx
 rapidfuzz
 pytest
 pytest-asyncio
+torch
+transformers
+sentencepiece

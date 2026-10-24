@@ -12,6 +12,8 @@ pip install -r requirements.txt
 copy .env.example .env
 ```
 
+The requirements use the CPU-only PyTorch index; no CUDA installation is needed.
+
 ## Run
 
 ```powershell

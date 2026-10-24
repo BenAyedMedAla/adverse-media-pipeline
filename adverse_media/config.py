@@ -2,6 +2,7 @@
 
 from functools import lru_cache
 
+from pydantic import Field
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
@@ -10,8 +11,10 @@ class Settings(BaseSettings):
 
     model_config = SettingsConfigDict(env_file=".env", env_file_encoding="utf-8", extra="ignore")
 
-    adverse_threshold_hit: float = 0.80
-    adverse_threshold_reject: float = 0.40
+    gate_reject_threshold: float = 0.50
+    victim_veto_threshold: float = 0.30
+    tag_threshold: float = 0.50
+    tag_max_labels: int = Field(default=2, ge=1)
 
     nli_model_name: str = "MoritzLaurer/mDeBERTa-v3-base-xnli-multilingual-nli-2mil7"
 
