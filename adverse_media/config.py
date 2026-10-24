@@ -29,6 +29,7 @@ class Settings(BaseSettings):
     llm_reasoning_effort: Literal["low", "medium", "high"] | None = None
 
     source_timeout_seconds: float = 5
+    data_path: str = "data/articles.json"
 
 
 @lru_cache

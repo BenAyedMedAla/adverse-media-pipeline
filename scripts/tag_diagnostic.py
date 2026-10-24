@@ -70,7 +70,7 @@ async def load_dev_true_positives() -> tuple[list, list[set[str]]]:
         LocalDatasetSource(ROOT / "data" / "articles.json", "web_archive"),
     ]
     candidates = await fetch_candidates(sources, COMPANY, KEYWORDS, "en", 5)
-    articles, _ = deduplicate(candidates)
+    articles, _ = deduplicate(candidates.articles)
     selected = [
         article
         for article in articles

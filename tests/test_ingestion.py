@@ -39,7 +39,7 @@ class FakeSource(ArticleSource):
 
 
 async def fetch(sources: list[ArticleSource], timeout_seconds: float = 5.0) -> list[Article]:
-    return await fetch_candidates(sources, "Acme GmbH", ["fraud"], "en", timeout_seconds)
+    return (await fetch_candidates(sources, "Acme GmbH", ["fraud"], "en", timeout_seconds)).articles
 
 
 @pytest.mark.asyncio
@@ -61,6 +61,20 @@ async def test_slow_source_is_skipped() -> None:
 async def test_failing_source_is_skipped() -> None:
     articles = await fetch([FakeSource("ok"), FakeSource("broken", fail=True)])
     assert [a.feed for a in articles] == ["ok"]
+
+
+@pytest.mark.asyncio
+async def test_fetch_result_counts_failed_sources() -> None:
+    result = await fetch_candidates(
+        [FakeSource("ok"), FakeSource("broken", fail=True)],
+        "Acme GmbH",
+        ["fraud"],
+        "en",
+        5,
+    )
+    assert result.sources_total == 2
+    assert result.sources_failed == 1
+    assert len(result.articles) == 1
 
 
 @pytest.mark.asyncio

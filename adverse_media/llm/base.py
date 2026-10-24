@@ -13,12 +13,14 @@ class LLMError(Exception):
         status: int | None = None,
         provider_code: str | None = None,
         provider_message: str | None = None,
+        retry_after_seconds: float | None = None,
     ) -> None:
         super().__init__(message)
         self.retryable = retryable
         self.status = status
         self.provider_code = provider_code
         self.provider_message = provider_message
+        self.retry_after_seconds = retry_after_seconds
 
 
 class LLMBackend(ABC):

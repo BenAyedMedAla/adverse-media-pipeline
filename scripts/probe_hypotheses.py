@@ -69,7 +69,7 @@ async def _load_dev_articles() -> tuple[list, dict[str, dict]]:
         LocalDatasetSource(ROOT / "data" / "articles.json", "web_archive"),
     ]
     candidates = await fetch_candidates(sources, "Acme GmbH", list(RISKS), "en", 5)
-    articles, _ = deduplicate(candidates)
+    articles, _ = deduplicate(candidates.articles)
     gate = EntityGate("Acme GmbH")
     return [article for article in articles if labels[article.id]["split"] == "dev" and gate.matches(article)], labels
 

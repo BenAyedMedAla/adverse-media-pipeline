@@ -75,12 +75,14 @@ class OpenAICompatibleLLM(LLMBackend):
         except httpx.HTTPStatusError as exc:
             status = exc.response.status_code
             code, message = _provider_error(exc.response, self.api_key)
+            retry_after = _retry_after_seconds(exc.response)
             raise LLMError(
                 f"LLM request failed with status {status}: {message or 'provider error'}",
                 retryable=status == 429 or status >= 500,
                 status=status,
                 provider_code=code,
                 provider_message=message,
+                retry_after_seconds=retry_after,
             ) from exc
         except (httpx.HTTPError, ValueError, KeyError, IndexError, TypeError) as exc:
             status = response.status_code if "response" in locals() else "unknown"
@@ -132,3 +134,17 @@ def _provider_error(
             message = message.replace(api_key, "[redacted]")
         message = message[:200]
     return code, message
+
+
+def _retry_after_seconds(response: httpx.Response) -> float | None:
+    """Read a numeric Retry-After value for the synthesizer to cap."""
+    if response.status_code != 429:
+        return None
+    value = response.headers.get("Retry-After")
+    if value is None:
+        return None
+    try:
+        parsed = float(value)
+        return parsed if parsed >= 0 else None
+    except ValueError:
+        return None

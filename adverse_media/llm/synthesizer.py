@@ -1,6 +1,7 @@
 """Validated, concurrent LLM verification with deterministic fallback."""
 
 import asyncio
+import logging
 import time
 from dataclasses import dataclass
 
@@ -9,6 +10,13 @@ from adverse_media.decision.cascade import DecisionRecord, Zone
 from adverse_media.llm.base import LLMBackend, LLMError
 from adverse_media.llm.prompts import build_messages
 from adverse_media.llm.schemas import LLMVerdict, extract_json
+
+logger = logging.getLogger(__name__)
+
+# Maximum extra requests after a rate-limit response.
+RATE_LIMIT_MAX_RETRIES = 3
+# Maximum seconds to wait before a rate-limit retry.
+RATE_LIMIT_MAX_WAIT_SECONDS = 30
 
 
 @dataclass
@@ -69,18 +77,25 @@ class HitSynthesizer:
         language: str,
     ) -> SynthesisBatch:
         if self.backend is None:
+            outcomes = [
+                SynthesisOutcome(
+                    r,
+                    fallback_verdict(r),
+                    "fallback",
+                    False,
+                    "LLMError: backend unavailable",
+                    None,
+                )
+                for r in records
+            ]
+            for outcome in outcomes:
+                logger.warning(
+                    "LLM fallback article_id=%s attempts=0 error=%s",
+                    outcome.record.article.id,
+                    outcome.error,
+                )
             return SynthesisBatch(
-                [
-                    SynthesisOutcome(
-                        r,
-                        fallback_verdict(r),
-                        "fallback",
-                        False,
-                        "LLMError: backend unavailable",
-                        None,
-                    )
-                    for r in records
-                ],
+                outcomes,
                 0,
                 0,
                 len(records),
@@ -97,9 +112,13 @@ class HitSynthesizer:
             last_status: int | None = None
             last_code: str | None = None
             last_message: str | None = None
+            attempts = 0
+            rate_limit_retries = 0
+            general_retry_used = False
             started = time.perf_counter()
-            for attempt in range(2):
-                if attempt:
+            while True:
+                attempts += 1
+                if attempts > 1:
                     user += (
                         f"\nYour previous reply was invalid: {last_error}. "
                         "Return only valid JSON with the required keys."
@@ -124,17 +143,43 @@ class HitSynthesizer:
                         last_status = exc.status
                         last_code = exc.provider_code
                         last_message = exc.provider_message
+                        retry_after = exc.retry_after_seconds
                     elif isinstance(exc, asyncio.TimeoutError):
                         last_error = "TimeoutError: LLM request timed out"
                         retryable = True
+                        retry_after = None
                     else:
                         last_error = f"{type(exc).__name__}: {exc}"
                         retryable = True
-                    if attempt == 0 and retryable:
+                        retry_after = None
+                    if last_status == 429 and rate_limit_retries < RATE_LIMIT_MAX_RETRIES:
+                        rate_limit_retries += 1
                         counters["retries"] += 1
-                    elif attempt == 0:
+                        wait_seconds = min(
+                            retry_after
+                            if retry_after is not None
+                            else 5.0,
+                            RATE_LIMIT_MAX_WAIT_SECONDS,
+                        )
+                        await asyncio.sleep(wait_seconds)
+                        continue
+                    if last_status == 429:
                         break
+                    if retryable and not general_retry_used:
+                        general_retry_used = True
+                        counters["retries"] += 1
+                        continue
+                    break
             latency = (time.perf_counter() - started) * 1000
+            logger.warning(
+                "LLM fallback article_id=%s attempts=%s error=%s status=%s code=%s message=%s",
+                record.article.id,
+                attempts,
+                last_error,
+                last_status,
+                last_code,
+                (last_message or "")[:200],
+            )
             return (
                 SynthesisOutcome(
                     record,

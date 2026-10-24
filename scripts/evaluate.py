@@ -80,7 +80,7 @@ async def load_articles(split: str) -> tuple[list, dict[str, dict]]:
         LocalDatasetSource(ROOT / "data" / "articles.json", "web_archive"),
     ]
     candidates = await fetch_candidates(sources, "Acme GmbH", KEYWORDS, "en", 5)
-    articles, _ = deduplicate(candidates)
+    articles, _ = deduplicate(candidates.articles)
     selected = [
         article for article in articles if split == "all" or labels[article.id]["split"] == split
     ]
