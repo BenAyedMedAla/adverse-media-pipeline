@@ -14,6 +14,7 @@ class LLMError(Exception):
         provider_code: str | None = None,
         provider_message: str | None = None,
         retry_after_seconds: float | None = None,
+        retry_after_header: str | None = None,
     ) -> None:
         super().__init__(message)
         self.retryable = retryable
@@ -21,6 +22,7 @@ class LLMError(Exception):
         self.provider_code = provider_code
         self.provider_message = provider_message
         self.retry_after_seconds = retry_after_seconds
+        self.retry_after_header = retry_after_header
 
 
 class LLMBackend(ABC):

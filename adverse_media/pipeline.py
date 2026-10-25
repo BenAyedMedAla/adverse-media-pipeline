@@ -101,10 +101,13 @@ class AdverseMediaPipeline:
             reverse=True,
         )
         stage_ms = {
-            "fetch": fetch_ms,
-            "dedup": dedup_ms,
-            **{name: cascade.stage_ms.get(name, 0.0) for name in STAGE_NAMES[2:6]},
-            "llm": llm_ms,
+            "fetch": round(fetch_ms, 1),
+            "dedup": round(dedup_ms, 1),
+            **{
+                name: round(cascade.stage_ms.get(name, 0.0), 1)
+                for name in STAGE_NAMES[2:6]
+            },
+            "llm": round(llm_ms, 1),
         }
         metrics = Metrics(
             total_candidates_fetched=len(fetched.articles),

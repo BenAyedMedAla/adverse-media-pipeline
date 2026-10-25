@@ -1,0 +1,18 @@
+
+FINAL CASCADE REPORT
+  true_positive: n=4 entity-rejected=0 noise=0 edge=1 hit=3
+  fp_victim: n=1 entity-rejected=0 noise=0 edge=1 hit=0
+  fp_training: n=1 entity-rejected=0 noise=1 edge=0 hit=0
+  fp_denied_rumor: n=1 entity-rejected=0 noise=1 edge=0 hit=0
+  fp_other_entity: n=1 entity-rejected=0 noise=0 edge=1 hit=0
+  fp_mention_only: n=1 entity-rejected=0 noise=1 edge=0 hit=0
+  noise: n=4 entity-rejected=3 noise=1 edge=0 hit=0
+  not_rejected: precision/recall/f1=(0.6666666666666666, 1.0, 0.8) n=13
+  hit_only: precision/recall/f1=(1.0, 0.75, 0.8571428571428571) n=13
+  tag_micro_precision=0.5000 tag_micro_recall=0.5714 tag_micro_f1=0.5333 n_true_positives=4
+  keyword_baseline: precision/recall/f1=(0.2, 0.25, 0.22222222222222224) n=13
+  llm_candidates=6 n_deduplicated=13 share=0.4615 floor_gold_true_positives=4
+  model_passes=40 n=13 stage_ms={'entity': 0.828599906526506, 'gate': 1032.0926998974755, 'victim': 635.6956000672653, 'tags': 2155.9328999137506, 'total': 3824.774399981834} total_decision_layer_ms=3824.77 ms_per_article=294.21
+  misclassified id=a015 kind=fp_victim language=en p_gate=0.9306526780128479 p_victim=0.4633277654647827
+  misclassified id=a022 kind=fp_other_entity language=fr p_gate=0.9148202538490295 p_victim=0.4112103581428528
+  note: n is reported for every metric; the test split is small.

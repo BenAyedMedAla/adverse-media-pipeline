@@ -13,8 +13,8 @@ from adverse_media.llm.schemas import LLMVerdict, extract_json
 
 logger = logging.getLogger(__name__)
 
-# Maximum extra requests after a rate-limit response.
-RATE_LIMIT_MAX_RETRIES = 3
+# Maximum cumulative seconds spent waiting on rate-limit retries.
+RATE_LIMIT_MAX_TOTAL_WAIT_SECONDS = 75
 # Maximum seconds to wait before a rate-limit retry.
 RATE_LIMIT_MAX_WAIT_SECONDS = 30
 
@@ -113,7 +113,7 @@ class HitSynthesizer:
             last_code: str | None = None
             last_message: str | None = None
             attempts = 0
-            rate_limit_retries = 0
+            rate_limit_waited = 0.0
             general_retry_used = False
             started = time.perf_counter()
             while True:
@@ -144,27 +144,39 @@ class HitSynthesizer:
                         last_code = exc.provider_code
                         last_message = exc.provider_message
                         retry_after = exc.retry_after_seconds
+                        retry_after_header = exc.retry_after_header
                     elif isinstance(exc, asyncio.TimeoutError):
                         last_error = "TimeoutError: LLM request timed out"
                         retryable = True
                         retry_after = None
+                        retry_after_header = None
                     else:
                         last_error = f"{type(exc).__name__}: {exc}"
                         retryable = True
                         retry_after = None
-                    if last_status == 429 and rate_limit_retries < RATE_LIMIT_MAX_RETRIES:
-                        rate_limit_retries += 1
-                        counters["retries"] += 1
+                        retry_after_header = None
+                    if last_status == 429:
                         wait_seconds = min(
-                            retry_after
-                            if retry_after is not None
-                            else 5.0,
+                            max(retry_after if retry_after is not None else 5.0, 1.0),
                             RATE_LIMIT_MAX_WAIT_SECONDS,
                         )
+                        if (
+                            rate_limit_waited + wait_seconds
+                            > RATE_LIMIT_MAX_TOTAL_WAIT_SECONDS
+                        ):
+                            break
+                        logger.warning(
+                            "LLM rate limited (429); waiting %.1fs "
+                            "(retry_after_header=%r, waited_total=%.1fs of %ss)",
+                            wait_seconds,
+                            retry_after_header,
+                            rate_limit_waited + wait_seconds,
+                            RATE_LIMIT_MAX_TOTAL_WAIT_SECONDS,
+                        )
                         await asyncio.sleep(wait_seconds)
+                        rate_limit_waited += wait_seconds
+                        counters["retries"] += 1
                         continue
-                    if last_status == 429:
-                        break
                     if retryable and not general_retry_used:
                         general_retry_used = True
                         counters["retries"] += 1
@@ -172,13 +184,12 @@ class HitSynthesizer:
                     break
             latency = (time.perf_counter() - started) * 1000
             logger.warning(
-                "LLM fallback article_id=%s attempts=%s error=%s status=%s code=%s message=%s",
+                "LLM fallback article_id=%s attempts=%s error=%s status=%s code=%s",
                 record.article.id,
                 attempts,
                 last_error,
                 last_status,
                 last_code,
-                (last_message or "")[:200],
             )
             return (
                 SynthesisOutcome(

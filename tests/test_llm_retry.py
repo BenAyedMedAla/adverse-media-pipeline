@@ -188,9 +188,68 @@ async def test_rate_limit_budget_exhaustion_falls_back(monkeypatch: pytest.Monke
         [record()], "Acme GmbH", ["fraud"], "en"
     )
     assert batch.outcomes[0].source == "fallback"
-    assert batch.llm_invocations == 4
-    assert batch.llm_retries == 3
-    assert waits == [30.0, 30.0, 30.0]
+    assert batch.llm_invocations == 3
+    assert batch.llm_retries == 2
+    assert waits == [30.0, 30.0]
+    await backend.close()
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize(
+    ("header", "expected"),
+    [("0", 1.0), ("-2", 5.0), ("not-a-number", 5.0), (None, 5.0)],
+)
+async def test_rate_limit_wait_normalization(
+    monkeypatch: pytest.MonkeyPatch, header: str | None, expected: float
+) -> None:
+    waits: list[float] = []
+
+    async def fake_sleep(seconds: float) -> None:
+        waits.append(seconds)
+
+    monkeypatch.setattr("adverse_media.llm.synthesizer.asyncio.sleep", fake_sleep)
+    backend = OpenAICompatibleLLM("https://llm.example/v1", "secret-key", "model", 1, False)
+    response = httpx.Response(429, headers={"Retry-After": header} if header is not None else {})
+    responses = iter([response, httpx.Response(200, json={"choices": [{"message": {"content": valid()}}]})])
+    backend._client = httpx.AsyncClient(
+        transport=httpx.MockTransport(lambda request: next(responses))
+    )
+    batch = await HitSynthesizer(backend, Settings()).synthesize(
+        [record()], "Acme GmbH", ["fraud"], "en"
+    )
+    assert waits == [expected]
+    assert batch.llm_invocations == 2
+    await backend.close()
+
+
+@pytest.mark.asyncio
+async def test_several_rate_limits_succeed_within_total_wait_budget(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    waits: list[float] = []
+
+    async def fake_sleep(seconds: float) -> None:
+        waits.append(seconds)
+
+    monkeypatch.setattr("adverse_media.llm.synthesizer.asyncio.sleep", fake_sleep)
+    backend = OpenAICompatibleLLM("https://llm.example/v1", "secret-key", "model", 1, False)
+    responses = iter(
+        [
+            httpx.Response(429, headers={"Retry-After": "20"}),
+            httpx.Response(429, headers={"Retry-After": "20"}),
+            httpx.Response(200, json={"choices": [{"message": {"content": valid()}}]}),
+        ]
+    )
+    backend._client = httpx.AsyncClient(
+        transport=httpx.MockTransport(lambda request: next(responses))
+    )
+    batch = await HitSynthesizer(backend, Settings()).synthesize(
+        [record()], "Acme GmbH", ["fraud"], "en"
+    )
+    assert batch.outcomes[0].source == "llm"
+    assert batch.llm_invocations == 3
+    assert batch.llm_retries == 2
+    assert waits == [20.0, 20.0]
     await backend.close()
 
 

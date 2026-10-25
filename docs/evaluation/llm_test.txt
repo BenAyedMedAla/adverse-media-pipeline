@@ -1,0 +1,22 @@
+provider_host=api.groq.com model=openai/gpt-oss-20b json_mode=True key_present=yes
+PER ARTICLE
+id=a004 kind=true_positive zone=edge confirmed=True nli_tags=['corruption', 'fraud'] llm_categories=['corruption', 'bribery'] gold_categories=['bribery', 'corruption'] source=llm
+id=a012 kind=true_positive zone=hit confirmed=True nli_tags=['fraud', 'bribery'] llm_categories=['fraud', 'bribery'] gold_categories=['bribery', 'corruption', 'fraud'] source=llm
+id=a017 kind=fp_training zone=noise confirmed=False nli_tags=[] llm_categories=[] gold_categories=[] source=not_sent
+id=a019 kind=fp_denied_rumor zone=noise confirmed=False nli_tags=[] llm_categories=[] gold_categories=[] source=not_sent
+id=a024 kind=fp_mention_only zone=noise confirmed=False nli_tags=[] llm_categories=[] gold_categories=[] source=not_sent
+id=a032 kind=noise zone=noise confirmed=False nli_tags=[] llm_categories=[] gold_categories=[] source=not_sent
+id=a034 kind=noise zone=noise confirmed=False nli_tags=[] llm_categories=[] gold_categories=[] source=not_sent
+id=a006 kind=true_positive zone=hit confirmed=True nli_tags=['bribery', 'corruption'] llm_categories=['money laundering'] gold_categories=['money laundering'] source=llm
+id=a009 kind=true_positive zone=hit confirmed=True nli_tags=['fraud', 'corruption'] llm_categories=['fraud'] gold_categories=['fraud'] source=llm
+id=a015 kind=fp_victim zone=edge confirmed=False nli_tags=['fraud', 'bribery'] llm_categories=[] gold_categories=[] source=llm
+id=a022 kind=fp_other_entity zone=edge confirmed=False nli_tags=['corruption', 'bribery'] llm_categories=[] gold_categories=[] source=llm
+id=a030 kind=noise zone=noise confirmed=False nli_tags=[] llm_categories=[] gold_categories=[] source=not_sent
+id=a033 kind=noise zone=noise confirmed=False nli_tags=[] llm_categories=[] gold_categories=[] source=not_sent
+FINAL precision/recall/f1=(1.0, 1.0, 1.0) n=13
+SENT_TO_LLM precision/recall/f1=(0.6666666666666666, 1.0, 0.8) n=13
+TAG_LLM_VS_NLI precision=1.0000 recall=0.8571 f1=0.9231 n_articles=4 n_gold_labels=7
+FAILURES_BY_TYPE n=0 counts={}
+llm_invocations=6 retries=0 fallbacks=0 rejected=2 mean_latency_ms=2401.55
+FINAL_FALSE_POSITIVES []
+DROPPED_TRUE_POSITIVES []

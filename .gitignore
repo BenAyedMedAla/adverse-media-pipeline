@@ -19,3 +19,11 @@ models/
 # Assessment brief
 *.docx
 technical-assassement.txt
+
+# Local command output
+*.log
+*.out
+output/
+outputs/
+demo-output*.json
+adverse-media-*.txt

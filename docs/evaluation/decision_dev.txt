@@ -1,0 +1,53 @@
+
+DEV tuning: reject threshold
+  threshold=0.30 true_positives_rejected=0 non_hits_rejected=8 passed=13
+  threshold=0.35 true_positives_rejected=0 non_hits_rejected=8 passed=13
+  threshold=0.40 true_positives_rejected=0 non_hits_rejected=8 passed=13
+  threshold=0.45 true_positives_rejected=0 non_hits_rejected=8 passed=13
+  threshold=0.50 true_positives_rejected=0 non_hits_rejected=9 passed=12
+  threshold=0.55 true_positives_rejected=0 non_hits_rejected=9 passed=12
+  threshold=0.60 true_positives_rejected=0 non_hits_rejected=9 passed=12
+  threshold=0.65 true_positives_rejected=0 non_hits_rejected=9 passed=12
+  gap_edges highest_non_victim_non_hit=0.4649 lowest_true_positive=0.6654
+  selection: recall-first: the lowest table value strictly above the highest non-victim non-hit score and below the lowest true-positive score.
+
+DEV tuning: victim veto threshold
+  threshold=0.15 true_positives_edge=2 non_hits_edge=2 eligible=10
+  threshold=0.20 true_positives_edge=1 non_hits_edge=2 eligible=10
+  threshold=0.25 true_positives_edge=0 non_hits_edge=2 eligible=10
+  threshold=0.30 true_positives_edge=0 non_hits_edge=2 eligible=10
+  threshold=0.35 true_positives_edge=0 non_hits_edge=1 eligible=10
+  threshold=0.40 true_positives_edge=0 non_hits_edge=1 eligible=10
+  threshold=0.45 true_positives_edge=0 non_hits_edge=1 eligible=10
+  gap_edges highest_true_positive_victim=0.2328 lowest_victim_non_hit=0.3444
+  selection: candidate inside the victim-score gap; victim flags never reject.
+
+DEV tag result: final rule tag_threshold=0.50, tag_max_labels=2
+  micro_precision=0.7333 micro_recall=0.8462 micro_f1=0.7857 n_articles=8 n_gold_labels=13
+  id=a001 language=en gold=['bribery', 'corruption'] predicted=['corruption', 'bribery']
+  id=a002 language=en gold=['fraud'] predicted=['fraud', 'corruption']
+  id=a005 language=de gold=['bribery', 'corruption'] predicted=['fraud', 'bribery']
+  id=a007 language=en gold=['bribery', 'corruption', 'fraud'] predicted=['bribery', 'fraud']
+  id=a010 language=en gold=['money laundering'] predicted=['money laundering']
+  id=a011 language=fr gold=['bribery', 'corruption'] predicted=['corruption', 'bribery']
+  id=a003 language=en gold=['money laundering'] predicted=['money laundering', 'corruption']
+  id=a008 language=en gold=['fraud'] predicted=['fraud', 'bribery']
+  chosen thresholds: gate_reject=0.50 victim_veto=0.30 tag=0.50 (manual default; diagnostic table only)
+
+FINAL CASCADE REPORT
+  true_positive: n=8 entity-rejected=0 noise=0 edge=0 hit=8
+  fp_victim: n=2 entity-rejected=0 noise=0 edge=2 hit=0
+  fp_training: n=1 entity-rejected=0 noise=1 edge=0 hit=0
+  fp_denied_rumor: n=1 entity-rejected=0 noise=1 edge=0 hit=0
+  fp_other_entity: n=2 entity-rejected=0 noise=2 edge=0 hit=0
+  fp_mention_only: n=1 entity-rejected=0 noise=1 edge=0 hit=0
+  noise: n=6 entity-rejected=2 noise=4 edge=0 hit=0
+  not_rejected: precision/recall/f1=(0.8, 1.0, 0.888888888888889) n=21
+  hit_only: precision/recall/f1=(1.0, 1.0, 1.0) n=21
+  tag_micro_precision=0.7333 tag_micro_recall=0.8462 tag_micro_f1=0.7857 n_true_positives=8
+  keyword_baseline: precision/recall/f1=(0.4166666666666667, 0.625, 0.5) n=21
+  llm_candidates=10 n_deduplicated=21 share=0.4762 floor_gold_true_positives=8
+  model_passes=69 n=21 stage_ms={'entity': 1.2400000123307109, 'gate': 1989.5117999985814, 'victim': 1017.4993999535218, 'tags': 3306.040299939923, 'total': 6314.532699994743} total_decision_layer_ms=6314.53 ms_per_article=300.69
+  misclassified id=a013 kind=fp_victim language=en p_gate=0.9532459378242493 p_victim=0.49657371640205383
+  misclassified id=a014 kind=fp_victim language=de p_gate=0.8692156076431274 p_victim=0.34435054659843445
+  note: n is reported for every metric; the test split is small.

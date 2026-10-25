@@ -76,6 +76,11 @@ class OpenAICompatibleLLM(LLMBackend):
             status = exc.response.status_code
             code, message = _provider_error(exc.response, self.api_key)
             retry_after = _retry_after_seconds(exc.response)
+            retry_after_header = (
+                exc.response.headers.get("Retry-After")
+                if status == 429
+                else None
+            )
             raise LLMError(
                 f"LLM request failed with status {status}: {message or 'provider error'}",
                 retryable=status == 429 or status >= 500,
@@ -83,6 +88,7 @@ class OpenAICompatibleLLM(LLMBackend):
                 provider_code=code,
                 provider_message=message,
                 retry_after_seconds=retry_after,
+                retry_after_header=retry_after_header,
             ) from exc
         except (httpx.HTTPError, ValueError, KeyError, IndexError, TypeError) as exc:
             status = response.status_code if "response" in locals() else "unknown"
